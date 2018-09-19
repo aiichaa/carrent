@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <img class="align-content" src="{{ asset('car.png') }}" alt="" style="width: 140px;">
+                </div>
+                <div class="login-form">
+
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                    {{ form_widget(form) }}
+                    <div>
+                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30" id="_submit" name="_submit">{{ 'registration.submit'|trans }}</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

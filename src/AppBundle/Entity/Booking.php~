@@ -1,0 +1,74 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Booking
+ *
+ * @ORM\Table(name="booking", indexes={@ORM\Index(name="vehicle", columns={"vehicle"}), @ORM\Index(name="user", columns={"user"})})
+ * @ORM\Entity
+ */
+class Booking
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="checkin", type="datetime", nullable=true)
+     */
+    private $checkin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="checkout", type="datetime", nullable=true)
+     */
+    private $checkout;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="amount", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $amount;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="string", length=255, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var \Vehicle
+     *
+     * @ORM\ManyToOne(targetEntity="Vehicle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="vehicle", referencedColumnName="id")
+     * })
+     */
+    private $vehicle;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+
+}
+

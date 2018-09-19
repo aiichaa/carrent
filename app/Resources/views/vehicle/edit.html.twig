@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <!-- content -->
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                    <h1><i class="ti-car"></i></h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="{{ path('homepage') }}">ADMINISTRATION</a></li>
+                        <li>Gestion voitures</li>
+                        <li class="active">Modifier voiture</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Voiture : {{ vehicle.id }}</strong>
+                        </div>
+                        <div class="card-body">
+                            {{ form_start(edit_form) }}
+                            {{ form_errors(edit_form) }}
+                            <div class="row">
+                                <div class="col-xs-12 col-lg-6">
+                                    {{ form_row(edit_form.model) }}
+                                </div>
+                                <div class="col-xs-12 col-lg-6">
+                                    {{ form_row(edit_form.registrationNumber) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-lg-6">
+                                    {{ form_row(edit_form.color) }}
+                                </div>
+                                <div class="col-xs-12 col-lg-6">
+                                    {{ form_row(edit_form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-lg-6">
+                                    {{ form_row(edit_form.price) }}
+                                </div>
+                            </div>
+                            {{ form_widget(edit_form) }}
+                            <br>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-lg-6">
+                                    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-pencil"></i> Modifier</button>
+                                    {{ form_end(edit_form) }}
+                                </div>
+                                <div class="col-xs-12 col-lg-6">
+                                    {{ form_start(delete_form) }}
+                                    <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash-o"></i> Supprimer</button>
+                                    {{ form_end(delete_form) }}
+                                </div>
+                            </div>
+
+
+                            <br>
+                            <button type="button" class="btn btn-outline-secondary pull-right"><a href="{{ path('vehicle_index') }}"><i class="fa fa-arrow-circle-o-left"></i> Retourner à la liste</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+    </script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

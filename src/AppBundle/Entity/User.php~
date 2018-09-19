@@ -1,0 +1,105 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity
+ */
+class User
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=64, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=64, nullable=true)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone_number", type="string", length=64, nullable=true)
+     */
+    private $phoneNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=64, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=64, nullable=true)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=64, nullable=true)
+     */
+    private $password;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="File", mappedBy="user")
+     */
+    private $file;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="RefProfil", inversedBy="user")
+     * @ORM\JoinTable(name="lnk_user_profil",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="profil_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $profil;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->file = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->profil = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

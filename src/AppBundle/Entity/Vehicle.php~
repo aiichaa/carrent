@@ -1,0 +1,78 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Vehicle
+ *
+ * @ORM\Table(name="vehicle", indexes={@ORM\Index(name="model", columns={"model"})})
+ * @ORM\Entity
+ */
+class Vehicle
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=255, nullable=true)
+     */
+    private $color;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="registration_number", type="string", length=255, nullable=true)
+     */
+    private $registrationNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $price;
+
+    /**
+     * @var \Model
+     *
+     * @ORM\ManyToOne(targetEntity="Model")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="model", referencedColumnName="id")
+     * })
+     */
+    private $model;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="File", mappedBy="vehicle")
+     */
+    private $file;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->file = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+
